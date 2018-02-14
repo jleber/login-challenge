@@ -1,7 +1,12 @@
 package com.jleber.login.challenge.request;
 
-/**
- * Created by jleber on 14/02/18.
- */
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
+
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserRequest {
+    private String email;
+    private String password;
+    private String token;
 }
