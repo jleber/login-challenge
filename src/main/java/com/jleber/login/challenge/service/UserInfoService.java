@@ -12,12 +12,12 @@ import org.springframework.util.StringUtils;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserInfoService {
 
     private UserRepository repository;
     private MapperFacade mapper;
 
-    public UserService(@Autowired UserRepository userRepository, @Autowired MapperFacade mapperFacade) {
+    public UserInfoService(@Autowired UserRepository userRepository, @Autowired MapperFacade mapperFacade) {
         repository = userRepository;
         mapper = mapperFacade;
     }
