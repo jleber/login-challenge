@@ -1,7 +1,12 @@
 package com.jleber.login.challenge.repository;
 
-/**
- * Created by jleber on 15/02/18.
- */
-public interface UserRepository {
+import com.jleber.login.challenge.model.UserInfo;
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.Optional;
+
+public interface UserRepository extends CrudRepository<UserInfo, String> {
+
+    Optional<UserInfo> findByEmailAndPassword(String email, String password);
+    Optional<UserInfo> findByToken(String token);
 }
