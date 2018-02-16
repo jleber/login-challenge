@@ -1,7 +1,12 @@
 package com.jleber.login.challenge;
 
-/**
- * Created by jleber on 16/02/18.
- */
+import com.jleber.login.challenge.configuration.ApplicationConfig;
+import org.springframework.boot.SpringApplication;
+
 public class Main {
+
+    public static void main(String[] args){
+        SpringApplication.run(ApplicationConfig.class);
+    }
+
 }
