@@ -1,11 +1,15 @@
 package com.jleber.login.challenge.filter;
 
 import com.jleber.login.challenge.model.UserInfo;
+import com.jleber.login.challenge.response.UserResponse;
 import com.jleber.login.challenge.service.UserInfoService;
+import org.hibernate.Hibernate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -29,17 +33,7 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
 
         String token = httpRequest.getHeader("api_token");
 
-        UserInfo userInfo = userInfoService.findByToken(token)
-                                        .orElseThrow(() -> new RuntimeException("Invalid Token !"));
-
-        UserDetails user = User.withUsername(userInfo.getEmail())
-                                .password(userInfo.getPassword())
-                                .credentialsExpired(false)
-                                .accountExpired(false)
-                                .accountLocked(false)
-                                .disabled(false)
-                                .authorities("API_USER")
-                                .build();
+        UserDetails user = userInfoService.retrieveUserDetails(token);
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
