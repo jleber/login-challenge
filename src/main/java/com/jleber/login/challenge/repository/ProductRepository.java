@@ -1,7 +1,11 @@
 package com.jleber.login.challenge.repository;
 
-/**
- * Created by jleber on 16/02/18.
- */
-public class ProductRepository {
+import com.jleber.login.challenge.model.Product;
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.stream.Stream;
+
+public interface ProductRepository extends CrudRepository<Product, Long> {
+    Stream<Product> findAllByType(String type);
+
 }
