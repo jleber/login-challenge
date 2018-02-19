@@ -1,9 +1,5 @@
 package com.jleber.login.challenge.configuration;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +13,6 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 @SpringBootApplication(scanBasePackages = "com.jleber.login.challenge")
 @EnableJpaRepositories(basePackages = "com.jleber.login.challenge.repository")
@@ -41,10 +36,7 @@ public class ApplicationConfig {
     @Primary
     @Bean
     public RedisTemplate<String, Object> redisTemplate(JedisConnectionFactory jedisConnectionFactory) {
-/*        Jackson2JsonRedisSerializer<JsonNode> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(JsonNode.class);
-        ObjectMapper objectMapper = new ObjectMapper();
-        jackson2JsonRedisSerializer.setObjectMapper(objectMapper);*/
-
+        
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory);
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
