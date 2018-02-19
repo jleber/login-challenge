@@ -1,5 +1,6 @@
-# login-challenge
+# Login-challenge
 
+[![Build Status](https://secure.travis-ci.org/jleber/login-challenge.png?branch=master)](https://travis-ci.org/jleber/login-challenge)
 
 ## Overview
 
