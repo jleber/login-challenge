@@ -36,7 +36,7 @@ public class ApplicationConfig {
     @Primary
     @Bean
     public RedisTemplate<String, Object> redisTemplate(JedisConnectionFactory jedisConnectionFactory) {
-        
+
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory);
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
