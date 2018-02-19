@@ -30,7 +30,7 @@ public class UserInfoService {
         return mapper.map(userInfo, UserResponse.class);
     }
 
-    @Cacheable("userToken")
+    @Cacheable(cacheNames = {"userToken"},key = "#root.method.name + #token")
     public UserInfo findByToken(String token){
         if(StringUtils.isEmpty(token)){
             throw new RuntimeException("Request Without Token Header !");
