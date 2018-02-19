@@ -7,6 +7,7 @@ import com.jleber.login.challenge.repository.CompanyRepository;
 import com.jleber.login.challenge.repository.ProductRepository;
 import com.jleber.login.challenge.repository.UserRepository;
 import com.jleber.login.challenge.utils.TestDataCreator;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import redis.embedded.RedisServer;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -39,6 +41,8 @@ public class CompanyControllerTest {
 
     @Autowired
     private ProductRepository productRepository;
+
+
 
     @Before
     public void setup() throws Exception {
