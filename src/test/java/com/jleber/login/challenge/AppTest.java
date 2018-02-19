@@ -16,10 +16,4 @@ import org.springframework.context.annotation.Primary;
 })
 public class AppTest {
 
-    @Primary
-    @Bean
-    CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("sample");
-    }
-
 }

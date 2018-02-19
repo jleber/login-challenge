@@ -1,6 +1,6 @@
 package com.jleber.login.challenge.controller;
 
-import com.jleber.login.challenge.configuration.ApplicationConfig;
+import com.jleber.login.challenge.configuration.ApplicationTestConfig;
 import com.jleber.login.challenge.model.Company;
 import com.jleber.login.challenge.model.Product;
 import com.jleber.login.challenge.repository.CompanyRepository;
@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
-@SpringBootTest(webEnvironment = RANDOM_PORT, classes = ApplicationConfig.class)
+@SpringBootTest(webEnvironment = RANDOM_PORT, classes = ApplicationTestConfig.class)
 public class CompanyControllerTest {
 
 
