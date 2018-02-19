@@ -2,13 +2,12 @@ package com.jleber.login.challenge;
 
 import com.jleber.login.challenge.controller.CompanyControllerTest;
 import com.jleber.login.challenge.controller.UserControllerTest;
-import com.jleber.login.challenge.model.Company;
-import com.jleber.login.challenge.model.Product;
-import com.jleber.login.challenge.utils.TestDataCreator;
-import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import redis.embedded.RedisServer;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -16,10 +15,11 @@ import redis.embedded.RedisServer;
         CompanyControllerTest.class
 })
 public class AppTest {
-    @Before
-    public void setup() throws Exception {
-        RedisServer redisServer = new RedisServer(6379);
-        redisServer.start();
+
+    @Primary
+    @Bean
+    CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager("sample");
     }
 
 }
