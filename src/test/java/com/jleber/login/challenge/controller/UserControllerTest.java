@@ -3,6 +3,13 @@ package com.jleber.login.challenge.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jleber.login.challenge.configuration.ApplicationConfig;
+import com.jleber.login.challenge.model.Company;
+import com.jleber.login.challenge.model.Product;
+import com.jleber.login.challenge.repository.CompanyRepository;
+import com.jleber.login.challenge.repository.ProductRepository;
+import com.jleber.login.challenge.repository.UserRepository;
+import com.jleber.login.challenge.utils.TestDataCreator;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +32,22 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     private ObjectMapper objectMapper = new ObjectMapper();
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private CompanyRepository companyRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Before
+    public void setup() throws Exception {
+        Product product = productRepository.save(TestDataCreator.getProduct());
+        Company company = companyRepository.save(TestDataCreator.getCompany(product));
+        userRepository.save(TestDataCreator.getUserInfo(company));
+    }
 
     @Test
     public void shouldUserAuthenticate() throws Exception {
